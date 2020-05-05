@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 set -xoeu pipefail
 
@@ -27,8 +27,10 @@ podPrefix=$(echo $pod | sed 's/\(.*\)\([0-9]\)$/\1/')
 leader=$podPrefix$index
 
 i=0
-while [ $? -eq 0 ];
+freespace=1000;
+while [ $freespace -gt 4 ];
 do
   kubectl exec -it $leader bash -- fallocate -l 1G data/fault$i;
   i=$((i+1))
+  freespace=$(kubectl exec -it $leader bash -- df -Ph data/ | awk 'NR==2 {print $4}' | cut -dG -f1)
 done

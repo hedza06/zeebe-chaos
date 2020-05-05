@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 set -exo pipefail
 
 
@@ -10,4 +10,5 @@ snapshotDir=$(ls -la $snapshotsPath | grep -o -E "([0-9]+-[0-9]+-[0-9]+)")
 
 # Remove a random *.sst file
 fileName=$(ls -la $snapshotsPath/$snapshotDir/ | sort -R | grep -o -m1 -E "[0-9]+\.sst")
+echo 'removing "$snapshotsPath/$snapshotDir/$fileName'
 rm $snapshotsPath/$snapshotDir/$fileName
