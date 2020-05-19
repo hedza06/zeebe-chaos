@@ -15,7 +15,7 @@ do
   freespace=$(kubectl exec -it $leader bash -- df -B 1M  data/ | awk 'NR==2 {print $4}' | cut -d. -f1);
 done
 
-while [ $freespace -gt 1024 ];
+while [ $freespace -gt 1 ];
 do
   kubectl exec -it $leader bash -- fallocate -l 1G data/fault/fault$i;
   i=$((i+1))

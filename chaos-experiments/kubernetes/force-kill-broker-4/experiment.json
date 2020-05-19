@@ -31,7 +31,7 @@
                 "arguments": "broker-4"
             },
             "pauses": {
-                "after": 60
+                "after": 10
             }
         }
     ],

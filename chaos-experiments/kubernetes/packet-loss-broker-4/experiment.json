@@ -31,14 +31,14 @@
                 "arguments": "broker-4"
             },
             "pauses": {
-                "after": 60
+                "after": 10
             }
         }
     ],
     "rollbacks": [
         {
             "type": "action",
-            "name": "Restart broker-4",
+            "name": "Reconnect broker-4",
             "provider": {
                 "type": "process",
                 "path": "reconnect-broker.sh",
