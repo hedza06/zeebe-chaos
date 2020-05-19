@@ -1,0 +1,52 @@
+{
+    "version": "0.1.0",
+    "title": "Zeebe-TT  isolate(network partition) broker-4 experiment",
+    "description": "Zeebe should be Available",
+    "contributions": {
+        "reliability": "high",
+        "availability": "high"
+    },
+    "steady-state-hypothesis": {
+        "title": "Zeebe is alive",
+        "probes": [
+            {
+                "name": "All pods should be ready",
+                "type": "probe",
+                "tolerance": 0,
+                "provider": {
+                    "type": "process",
+                    "path": "verify-readiness-tt-broker.sh",
+                    "timeout": 900
+                }
+            }
+        ]
+    },
+    "method": [
+        {
+            "type": "action",
+            "name": "Disconnect broker-4",
+            "provider": {
+                "type": "process",
+                "path": "disconnect-broker.sh",
+                "arguments": "broker-4"
+            },
+            "pauses": {
+                "after": 60
+            }
+        }
+    ],
+    "rollbacks": [
+        {
+            "type": "action",
+            "name": "Restart broker-4",
+            "provider": {
+                "type": "process",
+                "path": "reconnect-broker.sh",
+                "arguments": "broker-4"
+            },
+            "pauses": {
+                "before": 300
+            }
+        }
+    ]
+}
