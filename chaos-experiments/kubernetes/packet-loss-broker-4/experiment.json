@@ -1,6 +1,6 @@
 {
     "version": "0.1.0",
-    "title": "Zeebe-TT  Out-of-disk broker-4 experiment",
+    "title": "Zeebe-TT  Disrup network broker-4 experiment",
     "description": "Zeebe should be Available",
     "contributions": {
         "reliability": "high",
@@ -24,10 +24,10 @@
     "method": [
         {
             "type": "action",
-            "name": "Out of diskspace broker-4",
+            "name": "Packet loss broker-4",
             "provider": {
                 "type": "process",
-                "path": "fill-disk.sh",
+                "path": "packetloss-broker.sh",
                 "arguments": "broker-4"
             },
             "pauses": {
@@ -38,10 +38,10 @@
     "rollbacks": [
         {
             "type": "action",
-            "name": "Reclaim disk broker-4",
+            "name": "Restart broker-4",
             "provider": {
                 "type": "process",
-                "path": "rollback-fill-disk.sh",
+                "path": "reconnect-broker.sh",
                 "arguments": "broker-4"
             },
             "pauses": {

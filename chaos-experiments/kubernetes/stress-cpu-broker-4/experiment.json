@@ -1,6 +1,6 @@
 {
     "version": "0.1.0",
-    "title": "Zeebe-TT  Out-of-disk broker-4 experiment",
+    "title": "Zeebe-TT  Stress cpu broker-4 experiment",
     "description": "Zeebe should be Available",
     "contributions": {
         "reliability": "high",
@@ -24,10 +24,10 @@
     "method": [
         {
             "type": "action",
-            "name": "Out of diskspace broker-4",
+            "name": "Stress cpu broker-4",
             "provider": {
                 "type": "process",
-                "path": "fill-disk.sh",
+                "path": "stress-cpu-broker.sh",
                 "arguments": "broker-4"
             },
             "pauses": {
@@ -35,18 +35,5 @@
             }
         }
     ],
-    "rollbacks": [
-        {
-            "type": "action",
-            "name": "Reclaim disk broker-4",
-            "provider": {
-                "type": "process",
-                "path": "rollback-fill-disk.sh",
-                "arguments": "broker-4"
-            },
-            "pauses": {
-                "before": 300
-            }
-        }
-    ]
+    "rollbacks": [ ]
 }
