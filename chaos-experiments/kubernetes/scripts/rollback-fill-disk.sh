@@ -4,6 +4,7 @@ set -xoeu pipefail
 
 # LEADER for given partition
 leader=$1
+namespace=$2
 
-kubectl exec -it $leader bash -- rm -rf data/fault
-kubectl exec -it $leader -- df -h data/ --output=avail
+kubectl exec -n $namespace -it $leader bash -- rm -rf data/fault
+kubectl exec -n $namespace -it $leader -- df -h data/ --output=avail

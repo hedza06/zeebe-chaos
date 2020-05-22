@@ -6,6 +6,12 @@
         "reliability": "high",
         "availability": "high"
     },
+    "configuration": {
+        "namespace": {
+            "type": "env",
+            "key": "CHAOS_TARGET_NAMESPACE"
+        }
+    },
     "steady-state-hypothesis": {
         "title": "Zeebe is alive",
         "probes": [
@@ -28,10 +34,10 @@
             "provider": {
                 "type": "process",
                 "path": "disconnect-broker.sh",
-                "arguments": "broker-4"
+                "arguments": ["broker-4", "${namespace}"]
             },
             "pauses": {
-                "after": 10
+                "after": 300
             }
         }
     ],
@@ -42,10 +48,10 @@
             "provider": {
                 "type": "process",
                 "path": "reconnect-broker.sh",
-                "arguments": "broker-4"
+                "arguments": ["broker-4", "${namespace}"]
             },
             "pauses": {
-                "before": 300
+                "before": 10
             }
         }
     ]
